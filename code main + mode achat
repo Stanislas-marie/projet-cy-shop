@@ -1,0 +1,235 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+
+typedef struct {
+char nom[50];
+int ref;
+int taille;
+int prix;
+int stock;
+} produits;
+
+
+typedef struct {
+    char historique[1000];
+} client;
+
+//fonction qui afffiche les produits 
+void afficherStocksProduits(const char* nomFichier) {
+    FILE* fichier = fopen(nomFichier, "r");
+    if (fichier == NULL) {
+        printf("Erreur : impossible d'ouvrir le fichier %s.\n", nomFichier);
+        return;
+    }
+
+    char ligne[100]; // Supposons que chaque ligne contient au maximum 100 caractères
+
+    while (fgets(ligne, sizeof(ligne), fichier) != NULL) {
+        printf("%s", ligne);
+    }
+        printf("\n");
+    fclose(fichier);
+}
+
+//fonction recherche 
+void rechercheProduit(const char* nomProduitRecherche, const char* nomFichier) {
+    FILE* fichier = fopen(nomFichier, "r");
+    if (fichier == NULL) {
+        printf("Erreur : impossible d'ouvrir le fichier %s.\n", nomFichier);
+        return;
+    }
+
+    char ligne[100]; // Supposons que chaque ligne contient au maximum 100 caractères
+
+    while (fgets(ligne, sizeof(ligne), fichier) != NULL) {
+        // Extraire les informations du produit de la ligne
+        char nom[50];
+        int stock,ref,taille ,prix;
+
+        sscanf(ligne, "%s %d %d %d %d", nom, &ref, &taille, &prix, &stock);
+
+        // Vérifier si le produit correspond à celui recherché
+        if (strcmp(nom, nomProduitRecherche) == 0) {
+             printf("Informations du produit :\n");
+            printf("Nom : %s\n", nom);
+            printf("Référence : %d\n", ref);
+            printf("Taille : %d\n", taille);
+            printf("Prix : %d\n", prix);
+            printf("Stock : %d\n", stock);
+            fclose(fichier);
+        
+            return ;
+        }
+    }
+
+    printf("Produit non trouvé.\n");
+    fclose(fichier);
+}
+
+// fonction recherche stock
+ void recherche_produit(){
+  const char* nomFichier = "stock";
+  char recherche [50];
+  printf ("\n  quelle produit recherchez vous ?\n");
+  scanf ("%s",recherche);
+   rechercheProduit(recherche , nomFichier);
+ }
+
+//fonction qui affiche les " derniers produits du clienst "
+void afficher_derniers_produits(client client) {
+    int produits_achetes = 0;
+    char *token;
+    char *historique_copie = strdup(client.historique);
+    
+    // Récupérer le dernier produit acheté
+    token = strtok(historique_copie, ",");
+    char dernier_produit[100];
+    strcpy(dernier_produit, token);
+    
+    // Parcourir l'historique pour récupérer les 3 derniers produits
+    while (token != NULL) {
+        strcpy(dernier_produit, token);
+        token = strtok(NULL, ",");
+        produits_achetes++;
+    }
+    
+    // Afficher les 3 derniers produits achetés
+    printf("Les 3 derniers produits achetés :\n");
+    for (int i = 0; i < 3 && produits_achetes > 0; i++) {
+        printf("%d. %s\n", produits_achetes, dernier_produit);
+        token = strtok(NULL, ",");
+        if (token != NULL) {
+            strcpy(dernier_produit, token);
+        }
+        produits_achetes--;
+    }
+    
+    free(historique_copie);
+}
+
+//achat 
+void achat (client client){
+    printf("Que voulez vous faire ?\n " );
+  printf("1.achat produit \n");
+  printf("2.retourner au propososition du mode achat \n"); 
+  printf("3.Retour menu principal\n");
+
+
+  
+}
+
+
+//fonction mode achat 
+void mode_achat(client client) {
+   int a;
+    afficher_derniers_produits(client);
+  while (a!=3){
+  printf("====Menu Achat====\n");
+  printf("Que voulez vous faire ?\n" );
+  printf("1.Rechercher un produit en particulier \n");
+  printf("2.Afficher le stock d'un produit entier \n"); 
+  printf("3.Retour menu principal\n");
+  scanf("%d",&a);
+  switch (a){
+
+      case 1: printf("Rechercher un produit\n");
+                  
+                  recherche_produit();// connaitre le stock d'un produit 
+     break;
+      case 2: printf("Afficher tout les produits \n");
+            const char* nomFichier = "stock";
+            afficherStocksProduits(nomFichier);
+     break;
+
+      case 3: printf(" Retour au menu principal\n");
+                main();   // sortir mode gestion des stocks retour au menu 
+             break;
+      default:
+            printf("Choix invalide.\n");
+            break;
+              }
+}
+
+}
+
+// Fonction pour afficher le menu principal
+// Fonction pour afficher le menu principal
+void afficher_menu() {
+    printf("Menu principal :\n");
+    printf("1. menu gestion\n");
+    printf("2. menu achats\n");
+    printf("3. retourner au menu principal\n");
+    printf("4. Quitter\n");}
+
+int main() {
+    int choix = 0;
+    const char *nomFichier="stock";
+
+    // Boucle principale du programme
+    while (choix != 4) {
+        afficher_menu();
+        printf("Entrez votre choix : ");
+        scanf("%d", &choix);
+        fflush(stdin);
+    
+  switch (choix) {
+    int choix,choixa,choixb,choixc; 
+    printf("menu de gestion des stocks ");
+    scanf("%d", &choix);
+
+            case 1: // menu gestion 
+               printf("menu de gestion des stocks\n ");
+             
+              
+             
+                
+      
+
+     case 2: // menu achat
+              while (choixb!=5){  
+                fflush(stdin);
+              switch (choixb) {
+              printf("menu achat\n");
+              printf("avez-vous un compte clients?\n");
+              printf("1.Non\n");
+              printf("2.Oui\n");
+              printf("3.Supprimer un compte\n");
+              printf("4.Retour Menu\n");
+                scanf("%d",&choixb);
+                case 1:
+
+                  creation_client();
+                  break;
+
+                case 3: 
+                  sup_client();
+                  break;
+                
+                case 4:
+                  main();
+                  break;
+                
+                default:
+                  printf("Choix invalide.\n");
+            break;
+    }
+               
+
+    case 3:
+             main();
+                break;// retour menu principal
+            case 4:
+            // Quitter le programme
+            printf("Au revoir !\n");
+            break;
+        default:
+            printf("Choix invalide.\n");
+            break;
+    }
+}
+
+return 0;
+
+}  
