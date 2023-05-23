@@ -82,3 +82,79 @@ int main() {
 
     return 0;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#include <stdio.h>
+#include <string.h>
+
+typedef struct {
+    char prenomNom[100];
+} Client;
+
+void create_client_account_file(Client client) {
+    char filename[100];
+    strcpy(filename, client.prenomNom);
+    strcat(filename, "_compte.txt");
+
+    FILE *file = fopen(filename, "w");
+    if (file == NULL) {
+        printf("Désolé %s, il y a eu une erreur lors de la création de votre fichier de compte.\n", client.prenomNom);
+        return;
+    }
+
+    fprintf(file, "Compte créé pour %s\n", client.prenomNom);
+    fclose(file);
+    printf("Votre compte a été créé avec succès, %s!\n", client.prenomNom);
+}
+
+void check_client_account(Client client) {
+    char filename[100];
+    strcpy(filename, client.prenomNom);
+    strcat(filename, "_compte.txt");
+
+    FILE *file = fopen(filename, "r");
+    if (file != NULL) {
+        printf("Bienvenue, %s. Vous avez déjà un compte chez nous.\n", client.prenomNom);
+        fclose(file);
+    } else {
+        printf("Il semble que vous soyez un nouveau client. Nous allons créer un compte pour vous.\n");
+        create_client_account_file(client);
+    }
+}
+
+int main() {
+    Client client;
+
+    printf("Bonjour! Bienvenue sur notre site. \n");
+    
+    char prenom[50];
+    char nom[50];
+
+    printf("Entrez votre prénom : ");
+    fgets(prenom, sizeof(prenom), stdin);
+    prenom[strcspn(prenom, "\n")] = 0;  // Remove trailing newline
+
+    printf("Entrez votre nom de famille : ");
+    fgets(nom, sizeof(nom), stdin);
+    nom[strcspn(nom, "\n")] = 0;  // Remove trailing newline
+
+    strcpy(client.prenomNom, prenom);
+    strcat(client.prenomNom, nom);
+
+    check_client_account(client);
+
+    return 0;
+}
