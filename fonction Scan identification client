@@ -1,0 +1,84 @@
+#include <stdio.h>
+#include <string.h>
+
+typedef struct {
+    char prenomNom[100];
+    char historique[1000];
+} Client;
+
+void create_client_history_file(Client client) {
+    char filename[100];
+    strcpy(filename, client.prenomNom);
+    strcat(filename, "_historique.txt");
+
+    FILE *file = fopen(filename, "w");
+    if (file == NULL) {
+        printf("Désolé %s, il y a eu une erreur lors de la création de votre fichier d'historique.\n", client.prenomNom);
+        return;
+    }
+
+    fprintf(file, "%s\n", client.historique);
+    fclose(file);
+    printf("Votre compte a été créé avec succès, %s!\n", client.prenomNom);
+}
+
+void display_client_history(Client client) {
+    char filename[100];
+    strcpy(filename, client.prenomNom);
+    strcat(filename, "_historique.txt");
+
+    FILE *file = fopen(filename, "r");
+    if (file != NULL) {
+        printf("Voici vos trois derniers achats %s: \n", client.prenomNom);
+
+        // Suppose that each line in the file is a separate purchase
+        char line[3][256];
+        int i = 0;
+        while (fgets(line[i%3], sizeof line[i%3], file) != NULL) {
+            i++;
+        }
+
+        // Display the last three purchases
+        for (int j = i-3<0 ? 0 : i-3; j < i; j++) {
+            printf("%s", line[j%3]);
+        }
+
+        fclose(file);
+    } else {
+        printf("Il semble que vous soyez un nouveau client. Voulez-vous créer un compte ? (O/N): ");
+        char reponse;
+        scanf(" %c", &reponse); 
+        if (reponse == 'O' || reponse == 'o') {
+            printf("Veuillez entrer votre historique d'achats (si vous en avez un): ");
+            getchar(); // to consume the newline character left by scanf
+            fgets(client.historique, sizeof(client.historique), stdin);
+            create_client_history_file(client);
+        } else {
+            printf("Très bien, n'hésitez pas si vous changez d'avis!\n");
+        }
+    }
+}
+
+int main() {
+    Client client;
+
+    printf("Bonjour! Bienvenue sur notre site. \n");
+    
+    char prenom[50];
+    char nom[50];
+
+    printf("Entrez votre prénom : ");
+    fgets(prenom, sizeof(prenom), stdin);
+    prenom[strcspn(prenom, "\n")] = 0;  // Remove trailing newline
+
+    printf("Entrez votre nom de famille : ");
+    fgets(nom, sizeof(nom), stdin);
+    nom[strcspn(nom, "\n")] = 0;  // Remove trailing newline
+
+    strcpy(client.prenomNom, prenom);
+    strcat(client.prenomNom, nom);
+
+    display_client_history(client);
+
+    return 0;
+}
