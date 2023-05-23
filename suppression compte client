@@ -1,0 +1,28 @@
+#include <stdio.h>
+#include <string.h>
+
+typedef struct {
+    char prenomNom[100];
+} Client;
+
+void delete_client_account(Client client) {
+    char filename[100];
+    strcpy(filename, client.prenomNom);
+    strcat(filename, "_compte.txt");
+
+    printf("Voulez-vous supprimer votre compte %s ? (O/N): ", client.prenomNom);
+    char reponse;
+    scanf(" %c", &reponse);
+
+    if (reponse == 'O' || reponse == 'o') {
+        printf("Êtes-vous sûr de vouloir supprimer votre compte ? (O/N): ");
+        scanf(" %c", &reponse);
+        if (reponse == 'O' || reponse == 'o') {
+            if (remove(filename) == 0) {
+                printf("Le compte de %s a été supprimé avec succès.\n", client.prenomNom);
+            } else {
+                printf("Désolé, il y a eu une erreur lors de la suppression du compte de %s.\n", client.prenomNom);
+            }
+        }
+    }
+}
