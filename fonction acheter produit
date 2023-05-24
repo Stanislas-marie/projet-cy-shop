@@ -1,0 +1,87 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+int main() {
+    Produit produits[15] = {
+        {"pull", "1", 3, 10, 26},
+        {"veste", "2", 3, 15, 3},
+        {"tshirt", "3", 2, 10, 25},
+        {"pantalon", "4", 3, 15, 40},
+        {"jupe", "5", 2, 10, 8},
+        {"chaussette", "6", 1, 5, 45},
+        {"casquette", "7", 1, 5, 30},
+        {"sac", "8", 3, 15, 12},
+        {"vraicouteau", "9", 1, 5, 1},
+        {"jetski", "10", 3, 15, 45},
+        {"cadis-tuning", "11", 3, 15, 20},
+        {"torche-kohlanta", "12", 1, 5, 20},
+        {"costume-hulk", "13", 3, 15, 35},
+        {"santiag", "14", 2, 10, 50},
+        {"perruque", "15", 2, 10, 10}
+    };
+
+    char reponse;
+    printf("Voulez-vous acheter un de nos produits ? (O/N) : ");
+    scanf(" %c", &reponse);
+
+    switch(reponse) {
+        case 'O':
+        case 'o':
+            achat_produit(produits, 15);
+            break;
+        case 'N':
+        case 'n':
+            printf("Merci et à bientôt.\n");
+            break;
+        default:
+            printf("Réponse non reconnue.\n");
+    }
+
+    return 0;
+}
+
+void achat_produit(Produit *produits, int taille) {
+    int i, quantite;
+    char nom[50];
+    float total = 0.0;
+    char validation;
+
+    for (i = 0; i < taille; i++) {
+        printf("%s / %s / %d / %d / %d\n", produits[i].nom, produits[i].ref, produits[i].taille, produits[i].prix, produits[i].stock);
+    }
+
+    printf("Entrez le nom du produit que vous souhaitez acheter : ");
+    scanf("%s", nom);
+
+    printf("Entrez la quantité que vous souhaitez acheter : ");
+    scanf("%d", &quantite);
+
+    for (i = 0; i < taille; i++) {
+        if (strcmp(nom, produits[i].nom) == 0) {
+            if (quantite <= produits[i].stock) {
+                total += quantite * produits[i].prix;
+                produits[i].stock -= quantite;
+                printf("Vous avez ajouté %d %s(s) à votre panier. Le total actuel est : %.2f\n", quantite, produits[i].nom, total);
+            } else {
+                printf("Nous sommes désolés, mais nous n'avons pas assez de stock pour votre demande.\n");
+            }
+        }
+    }
+
+    printf("Voulez-vous valider votre panier ? (O/N) : ");
+    scanf(" %c", &validation);
+
+    switch(validation) {
+        case 'O':
+        case 'o':
+            printf("Merci pour votre achat. Votre total est : %.2f\n", total);
+            break;
+        case 'N':
+        case 'n':
+            printf("Votre panier a été annulé.\n");
+            break;
+        default:
+            printf("Réponse non reconnue.\n");
+    }
+}
