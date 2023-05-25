@@ -21,10 +21,8 @@ client creerCompteClient() {
     client nouveauClient;
 
     printf("=== Création d'un compte client ===\n");
-    printf("Entrez le nom du client : ");
-    scanf("%s", nouveauClient.nom);
-    printf("Entrez le prénom du client : ");
-    scanf("%s", nouveauClient.prenom);
+    printf("Entrez le nom d'utilisateur du client sous forme PrenomNom: ");
+    scanf("%s", nouveauClient.PrenomNom);
     strcpy(nouveauClient.historique, "");
 
     printf("Compte client créé avec succès.\n");
@@ -36,12 +34,12 @@ client creerCompteClient() {
 client identificationClient() {
     client client;
     printf("=== Identification client ===\n");
-    printf("Entrez le nom du client : ");
-    scanf("%s", client.nom);
-    printf("Entrez le prénom du client : ");
-    scanf("%s", client.prenom);
+    printf("Entrez le nom d'utilisateur du client sous forme PrenomNom: ");
+    scanf("%s", client.PrenomNom);
+   
 
     // Recherche du client dans la base de données
+   
     // Fonction suppression compte client
 
 void delete_client_account(Client client){
