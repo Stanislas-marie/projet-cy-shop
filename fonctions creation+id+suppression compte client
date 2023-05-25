@@ -2,10 +2,6 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-
 typedef struct {
     char nom[50];
     int ref;
@@ -46,7 +42,30 @@ client identificationClient() {
     scanf("%s", client.prenom);
 
     // Recherche du client dans la base de données
-    // ...
+    // Fonction suppression compte client
+
+void delete_client_account(Client client){
+    char filename[100];
+    strcpy(filename, client.PrenomNom);
+    strcat(filename, "_compte.txt");
+
+    printf("Voulez-vous supprimer votre compte %s ? (O/N): ", client.PrenomNom);
+    char reponse;
+    scanf(" %c", &reponse);
+
+    if (reponse == 'O' || reponse == 'o') {
+        printf("Êtes-vous sûr de vouloir supprimer votre compte ? (O/N): ");
+        scanf(" %c", &reponse);
+        if (reponse == 'O' || reponse == 'o') {
+            if (remove(filename) == 0) {
+                printf("Le compte de %s a été supprimé avec succès.\n", client.PrenomNom);
+            } else {
+                printf("Désolé, il y a eu une erreur lors de la suppression du compte de %s.\n", client.PrenomNom);
+            }
+        }
+    }
+}
+
 
     // Supposons que le client existe et on récupère son historique
     strcpy(client.historique, "Historique des achats du client...");
