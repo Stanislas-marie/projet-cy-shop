@@ -1,0 +1,16 @@
+void remplissage_panier ( char produits[] , int quantite ){
+    const char* panier;
+  FILE* fichier = fopen("panier", "w");
+    if (fichier == NULL) {
+        printf("Erreur : impossible d'ouvrir le fichier %s.\n", panier);
+        return;
+    }
+ 
+   fprintf(fichier, "%s %d",produits , quantite);
+   fclose(fichier);
+
+    
+
+
+  
+}
