@@ -1,0 +1,57 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+typedef struct {
+    char nom[50];
+    int ref;
+    int taille;
+    int prix;
+    int stock;
+} produits;
+
+typedef struct {
+    char nom[50];
+    char prenom[50];
+    char historique[1000];
+} client;
+
+// Fonction qui crée un compte client
+client creerCompteClient() {
+    client nouveauClient;
+
+    printf("=== Création d'un compte client ===\n");
+    printf("Entrez le nom du client : ");
+    scanf("%s", nouveauClient.nom);
+    printf("Entrez le prénom du client : ");
+    scanf("%s", nouveauClient.prenom);
+    strcpy(nouveauClient.historique, "");
+
+    printf("Compte client créé avec succès.\n");
+
+    return nouveauClient;
+}
+
+// Fonction qui identifie le client
+client identificationClient() {
+    client client;
+    printf("=== Identification client ===\n");
+    printf("Entrez le nom du client : ");
+    scanf("%s", client.nom);
+    printf("Entrez le prénom du client : ");
+    scanf("%s", client.prenom);
+
+    // Recherche du client dans la base de données
+    // ...
+
+    // Supposons que le client existe et on récupère son historique
+    strcpy(client.historique, "Historique des achats du client...");
+
+    printf("Identification réussie.\n");
+
+    return client;
+}
