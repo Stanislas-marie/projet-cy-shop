@@ -1,0 +1,14 @@
+ // vider le panier
+        for (int j = 0; j < taille; j++) {
+            produits[j].quantity_in_cart = 0;
+        }
+        printf("Votre panier a été vidé.\n");
+        
+        break;
+    case 'N':
+    case 'n':
+        printf("Votre panier a été annulé.\n");
+        break;
+    default:
+        printf("Réponse non reconnue.\n");
+}
