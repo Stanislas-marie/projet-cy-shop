@@ -1,0 +1,84 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+#define MAX_NAME_LENGTH 50
+#define MAX_PURCHASES 10
+
+typedef struct {
+    char name[MAX_NAME_LENGTH];
+    char purchases[MAX_PURCHASES][MAX_NAME_LENGTH];
+    int numPurchases;
+} Client;
+
+void deleteClientAccount(const char* clientName) {
+    char fileName[MAX_NAME_LENGTH + 4]; // +4 pour ".txt" et le caractère de fin de chaîne
+    sprintf(fileName, "%s.txt", clientName);
+
+    if (remove(fileName) == 0) {
+        printf("Le compte du client '%s' a été supprimé avec succès.\n", clientName);
+    } else {
+        printf("Erreur lors de la suppression du compte du client '%s'.\n", clientName);
+    }
+}
+
+int main() {
+    const int numClients = 3;
+    Client clients[numClients];
+
+    // Client 1: NoorhHimeda
+    strcpy(clients[0].name, "NoorhHimeda");
+    strcpy(clients[0].purchases[0], "pantalon");
+    strcpy(clients[0].purchases[1], "pantalon");
+    strcpy(clients[0].purchases[2], "jupe");
+    strcpy(clients[0].purchases[3], "sac");
+    clients[0].numPurchases = 4;
+
+    // Client 2: AriBuet
+    strcpy(clients[1].name, "AriBuet");
+    clients[1].numPurchases = 0;
+
+    // Client 3: StanislasMarie
+    strcpy(clients[2].name, "StanislasMarie");
+    strcpy(clients[2].purchases[0], "casquette");
+    clients[2].numPurchases = 1;
+
+    char clientName[MAX_NAME_LENGTH];
+    printf("Veuillez entrer votre nom : ");
+    fgets(clientName, MAX_NAME_LENGTH, stdin);
+    clientName[strcspn(clientName, "\n")] = '\0'; // Supprime le caractère de saut de ligne
+
+    // Recherche du client
+    int clientIndex = -1;
+    for (int i = 0; i < numClients; i++) {
+        if (strcmp(clients[i].name, clientName) == 0) {
+            clientIndex = i;
+            break;
+        }
+    }
+
+    if (clientIndex != -1) {
+        printf("Client : %s\n", clients[clientIndex].name);
+        if (clients[clientIndex].numPurchases > 0) {
+            printf("Achats :\n");
+            for (int i = 0; i < clients[clientIndex].numPurchases; i++) {
+                printf("- %s\n", clients[clientIndex].purchases[i]);
+            }
+        } else {
+            printf("Aucun achat.\n");
+        }
+
+        char confirmation;
+        printf("Voulez-vous supprimer votre compte ? (O/N) : ");
+        scanf(" %c", &confirmation);
+        if (confirmation == 'O' || confirmation == 'o') {
+            deleteClientAccount(clientName);
+        } else {
+            printf("Suppression du compte annulée.\n");
+        }
+    } else {
+        printf("Le compte du client '%s' n'existe pas.\n", clientName);
+    }
+
+    return 0;
+}
