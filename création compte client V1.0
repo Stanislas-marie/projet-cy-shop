@@ -1,0 +1,22 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+void create_client_account() {
+    char clientName[100];
+    printf("Veuillez entrer votre nom (PrenomNom) pour créer votre compte : ");
+    scanf("%s", clientName);
+
+    char filePath[100] = "clients/";
+    strcat(filePath, clientName);
+    strcat(filePath, ".txt");
+
+    FILE *file = fopen(filePath, "w");
+
+    if (file != NULL) {
+        printf("%s, votre compte a été créé avec succès.\n", clientName);
+        fclose(file);
+    } else {
+        printf("Impossible de créer le compte. Veuillez réessayer.\n");
+        perror("Erreur");
+    }
+}
