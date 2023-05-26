@@ -1,0 +1,140 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+typedef struct {
+    char nom[50];
+    int ref;
+    int taille;
+    int prix;
+    int stock;
+} produits;
+
+typedef struct {
+    char historique[1000];
+} client;
+
+
+void create_client_account() {
+    char clientName[100];
+    printf("Veuillez entrer votre nom (PrenomNom) pour créer votre compte : ");
+    scanf("%s", clientName);
+
+    char filePath[100] = "clients/";
+    strcat(filePath, clientName);
+   strcat(filePath, ".txt");
+
+    
+    
+
+    FILE *file = fopen(filePath, "w");
+
+    if (file != NULL) {
+        printf("%s, votre compte a été créé avec succès.\n", clientName);
+        fclose(file);
+    } else {
+        printf("Impossible de créer le compte. Veuillez réessayer.\n");
+        perror("Erreur");
+    }
+}
+// Fonction qui identifie le client
+client identification_client() {
+    char identifiant[100];
+    printf("Merci de vous connecter\n");
+    printf("Saisissez votre prenom et votre nom sous la forme prenom nom\n");
+    scanf("%s", identifiant);
+    char filePath[100] = "clients/";
+    strcat(filePath, identifiant);
+    strcat(filePath, ".txt");
+
+    FILE* fichier = fopen(filePath, "r");
+    if (fichier == NULL) {
+        printf("Erreur : impossible d'ouvrir le fichier %s.\n", identifiant);
+        exit(1); // Quitter le programme en cas d'erreur
+    }
+
+    char ligne[1000]; // Supposons que chaque ligne contient au maximum 1000 caractères
+    char historique[1000] = "";
+
+    while (fgets(ligne, sizeof(ligne), fichier) != NULL) {
+        // Ajouter la ligne à l'historique
+        strcat(historique, ligne);
+    }
+
+    fclose(fichier);
+
+    // Créer une structure client et copier l'historique
+    client client;
+    strcpy(client.historique, historique);
+    printf("%s", client.historique);
+    return client;
+}
+
+
+
+void lireDerniersMots(char c[]) {
+  char *chaine = c;
+    int longueurChaine = strlen(chaine);
+    int nbMots = 0;
+    int i;
+
+    // Compter le nombre de mots dans la chaîne
+    for (i = 0; i < longueurChaine; i++) {
+        if (chaine[i] == ' ') {
+            nbMots++;
+        }
+    }
+    nbMots++; // Ajouter le dernier mot
+
+    // Si la chaîne contient moins de 6 mots, lire tous les mots
+    if (nbMots <= 6) {
+        printf("Les 6 derniers mots : %s\n", chaine);
+    } else {
+        // Trouver l'indice du début du 6e dernier mot
+        int debutDerniersMots = 0;
+        int motsLus = 0;
+        for (i = longueurChaine - 1; i >= 0; i--) {
+            if (chaine[i] == ' ') {
+                motsLus++;
+                if (motsLus == 6) {
+                    debutDerniersMots = i + 1;
+                    break;
+                }
+            }
+        }
+
+        // Afficher les 6 derniers mots
+        printf("Les 6 derniers mots : %s\n", chaine + debutDerniersMots);
+    }
+}
+
+
+void delete_client_account() {
+    char clientName[100];
+    printf("Veuillez entrer votre nom (PrenomNom) pour supprimer votre compte: ");
+    scanf("%s", clientName);
+
+    char filePath[100] = "clients/";
+    strcat(filePath, clientName);
+      strcat(filePath, ".txt");
+
+
+    int status = remove(filePath);
+
+    if( status == 0 )
+        printf("%s, votre compte a été supprimé avec succès.\n", clientName);
+    else {
+        printf("Impossible de supprimer le compte. Assurez-vous que votre nom est correct et réessayez.\n");
+        perror("Erreur");
+    }
+}
+
+int main() {
+  create_client_account();
+    client c = identification_client();
+
+  lireDerniersMots(c.historique);
+  delete_client_account();
+    // Faites quelque chose avec le client identifié
+    return 0;
+}
