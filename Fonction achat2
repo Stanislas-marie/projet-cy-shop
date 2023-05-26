@@ -1,0 +1,46 @@
+//fonction achat2
+void achat_produit(produits *listeProduits, int taille) {
+    int i, quantite;
+    float total = 0.0;
+    char validation;
+
+    printf("Liste des produits :\n");
+    for (i = 0; i < taille; i++) {
+        printf("%s / %d / %d / %d / %d\n", listeProduits[i].nom, listeProduits[i].ref, listeProduits[i].taille, listeProduits[i].prix, listeProduits[i].stock);
+    }
+
+    printf("Entrez le nom du produit que vous souhaitez acheter : ");
+    char nom[50];
+    scanf("%s", nom);
+
+    printf("Entrez la quantité que vous souhaitez acheter : ");
+    scanf("%d", &quantite);
+
+    for (i = 0; i < taille; i++) {
+        if (strcmp(nom, listeProduits[i].nom) == 0) {
+            if (quantite <= listeProduits[i].stock) {
+                total += quantite * listeProduits[i].prix;
+                listeProduits[i].stock -= quantite;
+                printf("Vous avez ajouté %d %s(s) à votre panier. Le total actuel est : %.2f\n", quantite, listeProduits[i].nom, total);
+            } else {
+                printf("Nous sommes désolés, mais nous n'avons pas assez de stock pour votre demande.\n");
+            }
+        }
+    }
+
+    printf("Voulez-vous valider votre panier ? (O/N) : ");
+    scanf(" %c", &validation);
+
+    switch(validation) {
+        case 'O':
+        case 'o':
+            printf("Merci pour votre achat. Votre total est : %.2f\n", total);
+            break;
+        case 'N':
+        case 'n':
+            printf("Votre panier a été annulé.\n");
+            break;
+        default:
+            printf("Réponse non reconnue.\n");
+    }
+}
