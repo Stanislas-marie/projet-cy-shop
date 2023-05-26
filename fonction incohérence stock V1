@@ -1,0 +1,12 @@
+int verifierDisponibiliteStock(produits *listeProduits, int taille) {
+    int i, quantite;
+    for (i = 0; i < taille; i++) {
+        printf("Entrez la quantité du produit %s que vous souhaitez acheter : ", listeProduits[i].nom);
+        scanf("%d", &quantite);
+        if (quantite > listeProduits[i].stock) {
+            printf("Quantité demandée indisponible en stock pour le produit %s. Veuillez choisir une quantité inférieure ou égale à %d.\n", listeProduits[i].nom, listeProduits[i].stock);
+            return 0; // Quantité non disponible en stock
+        }
+    }
+    return 1; // Toutes les quantités sont disponibles en stock
+}
