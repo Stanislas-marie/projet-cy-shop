@@ -1,0 +1,31 @@
+#include <stdio.h>
+#include <string.h>
+#include <dirent.h>
+#include <stdlib.h>
+
+void identify_client() {
+    char clientName[100];
+    printf("Veuillez entrer votre nom (PrenomNom): ");
+    scanf("%s", clientName);
+
+    DIR* dir;
+    struct dirent* ent;
+    char clientDir[] = "clients/";
+
+    if ((dir = opendir (clientDir)) != NULL) {
+        while ((ent = readdir (dir)) != NULL) {
+            // On compare le nom du client avec le nom de chaque fichier
+            if(strcmp(ent->d_name, clientName) == 0) {
+                printf("Bonjour %s, bienvenue.\n", clientName);
+                closedir (dir);
+                return;
+            }
+        }
+        closedir (dir);
+    } else {
+        perror ("");
+        return EXIT_FAILURE;
+    }
+    
+    printf("Il semble que vous n'ayez pas de compte. Veuillez créer un compte.\n");
+}
