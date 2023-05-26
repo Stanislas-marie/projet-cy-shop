@@ -1,1 +1,1 @@
-2 veste 1 pantalon 1 chaussette 
+veste 2 pantalon 1 chaussette 1
