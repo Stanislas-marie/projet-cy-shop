@@ -1,0 +1,57 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <dirent.h>
+
+
+
+void create_client_account() {
+    char clientName[100];
+    printf("Veuillez entrer votre nom (PrenomNom) pour créer votre compte : ");
+    scanf("%s", clientName);
+
+    char filePath[100] = "clients/";
+    strcat(filePath, clientName);
+    
+
+    FILE *file = fopen(filePath, "w");
+
+    if (file != NULL) {
+        printf("%s, votre compte a été créé avec succès.\n", clientName);
+        fclose(file);
+    } else {
+        printf("Impossible de créer le compte. Veuillez réessayer.\n");
+        perror("Erreur");
+    }
+}
+
+
+
+
+
+
+void delete_client_account() {
+    char clientName[100];
+    printf("Veuillez entrer votre nom (PrenomNom) pour supprimer votre compte: ");
+    scanf("%s", clientName);
+
+    char filePath[100] = "clients/";
+    strcat(filePath, clientName);
+
+    int status = remove(filePath);
+
+    if( status == 0 )
+        printf("%s, votre compte a été supprimé avec succès.\n", clientName);
+    else {
+        printf("Impossible de supprimer le compte. Assurez-vous que votre nom est correct et réessayez.\n");
+        perror("Erreur");
+    }
+}
+
+
+int main (){
+  create_client_account();
+    identify_client();
+  
+  delete_client_account();
+}
