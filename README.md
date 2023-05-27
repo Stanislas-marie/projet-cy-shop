@@ -22,7 +22,39 @@ Limitations fonctionnelles / bugs connus :
 
 
 Dans le mode achat : 
+Le code  permet aux utilisateurs de créer des comptes clients, de se connecter, de parcourir et d'acheter des produits, ainsi que d'effectuer d'autres opérations.
 
+Voici une description des fonctions du code :
+
+1. `create_client()`: Crée un compte client en demandant à l'utilisateur son nom et en créant un fichier texte correspondant dans le répertoire "clients".
+
+2. `identification_client(client *clientinfo)`: Demande à l'utilisateur d'entrer son nom pour se connecter et récupère les informations de son compte à partir du fichier texte correspondant.
+
+3. `remplissage_panier(char produits[], int quantite)`: Ajoute un produit et une quantité au panier en ajoutant les informations à un fichier "panier.txt".
+
+4. `diminuer_stock(const char* nomProduit, int quantite, const char* nomFichier)`: Réduit le stock d'un produit d'une quantité spécifiée dans le fichier spécifié.
+
+5. `calculerSommeTotal()`: Calcule le prix total des produits dans le panier en récupérant les informations à partir des fichiers "panier.txt" et "stock.txt".
+
+6. `afficherStocksProduits(const char* nomFichier)`: Lit et affiche les informations sur tous les produits à partir du fichier spécifié.
+
+7. `rechercheProduit(const char* nomProduitRecherche, const char* nomFichier)`: Recherche un produit spécifique par son nom dans le fichier spécifié et affiche ses informations s'il est trouvé.
+
+8. `delete_client_account()`: Supprime un compte client en supprimant le fichier texte correspondant dans le répertoire "clients".
+
+9. `recherche_produit()`: Demande à l'utilisateur d'entrer le nom d'un produit et le recherche dans le fichier "stock.txt" en utilisant la fonction `rechercheProduit()`.
+
+10. `afficher_derniers_produits(client client)`: Récupère les trois derniers produits achetés à partir de l'historique d'achats du client et les affiche.
+
+11. `achat_produit(produits *produits, int taille)`: Permet à l'utilisateur d'acheter un produit en sélectionnant le produit et la quantité, en mettant à jour le stock et en calculant le prix total.
+
+12. `validation_achat()`: Gère le processus d'achat en affichant les produits disponibles, en permettant à l'utilisateur de sélectionner un produit et une quantité, et en validant l'achat.
+
+13. `mode_achat()`: Met en œuvre le mode d'achat, où l'utilisateur peut rechercher des produits, consulter le stock et effectuer des achats.
+
+14. `afficherProduitsCritiques(const char* nomFichier)`: Lit et affiche les informations sur les produits ayant des niveaux de stock bas à partir du fichier spécifié.
+
+Ce sont les principales fonctions du code. Il semble qu'il puisse y avoir certaines parties manquantes ou des fonctions non incluses dans l'extrait de code fourni, mais cela devrait vous donner un aperçu de la fonctionnalité.
 
 
 
