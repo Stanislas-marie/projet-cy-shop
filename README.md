@@ -1,5 +1,8 @@
 # projet-cy-shop
 (pour code main + mode gestion) 
+Le code est une implémentation d'un système de gestion de magasin. Il comprend des définitions de structures pour les produits et les clients, ainsi que des fonctions pour la création de compte client, l'identification du client, le remplissage du panier, la diminution du stock, le calcul du total du panier, l'affichage des produits en stock, la recherche de produits, la suppression du compte client, l'affichage des derniers produits achetés, l'achat de produits, le mode d'achat et l'affichage des produits critiques.
+
+
 Le code fourni représente la partie qui gère les stocks de produits du magasin . Il permet de rechercher des produits, d'augmenter les stocks de produits et d'afficher les produits dont le stock est critique. 
 explication de chaque fonctionnalité :
 
