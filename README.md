@@ -53,7 +53,7 @@ Utilisez "o" ou "O" pour répondre oui et "n" ou "N" pour réponde non.
 
 Dans le fichiers stock.txt les produits sont enregistrer sous la forme: nomduproduits références taille prix stock.
 Le fichier de chaque client est juste au nom du client sous la forme PrenomNom et contient l'historique d'achat de ce dernier.
-
+Les dossiers clients et historiquecode sont des dossiers qui n'ont été utilse que durant le processus de création du code.
 
 
 Vous pouvez vous servir du lien replit suivant pour une experience plus optimisée :
