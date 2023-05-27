@@ -4,8 +4,10 @@ Le code est une implémentation d'un système de gestion de magasin. Il comprend
 
 Le programme principal utilise une boucle while pour afficher le menu principal et attendre les choix de l'utilisateur. Selon le choix de l'utilisateur, différentes fonctions sont appelées pour effectuer les opérations correspondantes.
 
-(pour mode gestion) : 
-Le code fourni représente la partie qui gère les stocks de produits du magasin . Il permet de rechercher des produits, d'augmenter les stocks de produits et d'afficher les produits dont le stock est critique. 
+
+Dans le mode gestion : 
+
+Le code fourni représente la partie qui gère les stocks de produits du magasin . Il permet de rechercher des produits ( grâce aux fonctions "rechercheProduit" et "recherche_produit" , d'augmenter les stocks de produits et d'afficher les produits dont le stock est critique. 
 explication de chaque fonctionnalité :
 
 1. Afficher les produits en stock "afficherStocksProduits":
