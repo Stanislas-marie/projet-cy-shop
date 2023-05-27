@@ -284,7 +284,7 @@ void afficherStocksProduits(const char* nomFichier) {
 
 
 
-// Fonction recherche
+// Fonction qui permet de rechercher les infos d'un produits recherché 
 void rechercheProduit(const char* nomProduitRecherche, const char* nomFichier) {
     FILE* fichier = fopen(nomFichier, "r");
     if (fichier == NULL) {
@@ -321,6 +321,17 @@ void rechercheProduit(const char* nomProduitRecherche, const char* nomFichier) {
 
 
 
+// Fonction qui permet d'initialiser la fonctions de recherche d'un produit
+void recherche_produit() {
+    const char* nomFichier = "stock.txt";
+    char recherche[50];
+    printf("\nQuel produit recherchez-vous ?\n");
+    scanf("%s", recherche);
+    rechercheProduit(recherche, nomFichier);
+}
+
+
+
 
 //fonction qui permet de supprimer un compte client
 void delete_client_account() {
@@ -346,7 +357,7 @@ void delete_client_account() {
 
 
 
-// Fonction qui permet d'évaluer le site
+// Fonction qui permet d'écrire des commentaires
 
 void laisserCommentaire() {
     const char *nomFichier="commentaires.txt";
@@ -406,17 +417,6 @@ void lireCommentaires() {
 
 
 
-// Fonction recherche stock
-void recherche_produit() {
-    const char* nomFichier = "stock.txt";
-    char recherche[50];
-    printf("\nQuel produit recherchez-vous ?\n");
-    scanf("%s", recherche);
-    rechercheProduit(recherche, nomFichier);
-}
-
-
-
 
 // Fonction qui affiche les "derniers produits du client"
 void afficher_derniers_produits(client *client) {
@@ -453,7 +453,7 @@ void afficher_derniers_produits(client *client) {
 
 
 
-//fonction achat2
+//fonction qui permet a l'utilsateur de choisir un produits sa quantité et de valider son panier
 void achat_produit(produits *produits, int taille, client * a) {
     int i, quantite;
     char nom[50];
@@ -506,7 +506,7 @@ void achat_produit(produits *produits, int taille, client * a) {
 
 
 
-// fonction achat 1
+// fonction qui permet d'initaialiser la fonction d'achat_produits
 void validation_achat(client * a){
 produits produits[15];
     FILE *file = fopen("stock.txt", "r");
@@ -543,7 +543,7 @@ produits produits[15];
 
 
 
-// Fonction mode achat
+// Fonction mode achat qui affiche les possibilités du mode achat
 void mode_achat(client* client) {
   
     int a=0;
@@ -620,7 +620,7 @@ int main() {
           int codeSaisi;
             case 1:
                 // menu gestion
-                // Code PIN valide
+                // Code PIN valide 1234
     
               
               while (codeSaisi!=1234){
@@ -657,7 +657,7 @@ int main() {
                     lireCommentaires();
                     int retour=0;
                     while(retour!=1){
-                    printf("appuyez sur 1 pour revnir sur le menu principal\n");
+                    printf("appuyez sur 1 pour revenir sur le menu principal\n");
                     
                     scanf("%d",&retour);
                     if(retour==1){main();}
