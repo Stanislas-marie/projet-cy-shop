@@ -18,6 +18,8 @@ typedef struct {
 } client;
 
 
+
+
 //fonction qui permet de créer un compte client
 void create_client() {
     char clientName[100];
@@ -39,6 +41,7 @@ void create_client() {
         perror("Erreur");
     }
 }
+
 
 
 
@@ -73,6 +76,8 @@ void identification_client(client *clientinfo) {
 }
 
 
+
+
 //fonction qui rempli le panier 
 void remplissage_panier ( char produits[] , int quantite ){
     const char* panier="panier.txt";
@@ -86,6 +91,9 @@ void remplissage_panier ( char produits[] , int quantite ){
    fclose(fichier);
   
 }
+
+
+
 
 //fonction qui vide le panier et mets a jour l'historique clients 
 void copierPanierDansHistorique(client* client) {
@@ -114,6 +122,9 @@ void copierPanierDansHistorique(client* client) {
 
     printf("Le contenu du panier a été copié dans l'historique du client et le panier a été vidé.\n");
 }
+
+
+
 
 //fonction qui affiche les 5 produits aves les stocks les plus bas
 void afficherProduitsCritiques(const char* nomFichier) {
@@ -212,6 +223,10 @@ void augmenterStock(const char* nomProduit , int quantite, const char*  nomFichi
         }
     }
 }
+
+
+
+
 // fonction pour diminuer le stocks d'un produit 
 void diminuer_stock(const char* nomProduit , int quantite, const char*  nomFichier){
     FILE* fichier = fopen(nomFichier, "r+");
@@ -247,6 +262,8 @@ void diminuer_stock(const char* nomProduit , int quantite, const char*  nomFichi
 }
 
 
+
+
 // Fonction qui affiche les produits
 void afficherStocksProduits(const char* nomFichier) {
     FILE* fichier = fopen(nomFichier, "r");
@@ -263,6 +280,9 @@ void afficherStocksProduits(const char* nomFichier) {
     printf("\n");
     fclose(fichier);
 }
+
+
+
 
 // Fonction recherche
 void rechercheProduit(const char* nomProduitRecherche, const char* nomFichier) {
@@ -300,6 +320,8 @@ void rechercheProduit(const char* nomProduitRecherche, const char* nomFichier) {
 }
 
 
+
+
 //fonction qui permet de supprimer un compte client
 void delete_client_account() {
     char clientName[100];
@@ -320,6 +342,8 @@ void delete_client_account() {
         perror("Erreur");
     }
 }
+
+
 
 
 // Fonction qui permet d'évaluer le site
@@ -345,6 +369,8 @@ void laisserCommentaire() {
 
     printf("Votre commentaire a été enregistré avec succès dans le fichier %s.\n", nomFichier);
 }
+
+
 
 
 // Fonction qui permet de lire les commentaires 
@@ -378,6 +404,8 @@ void lireCommentaires() {
 }
 
 
+
+
 // Fonction recherche stock
 void recherche_produit() {
     const char* nomFichier = "stock.txt";
@@ -386,6 +414,8 @@ void recherche_produit() {
     scanf("%s", recherche);
     rechercheProduit(recherche, nomFichier);
 }
+
+
 
 
 // Fonction qui affiche les "derniers produits du client"
@@ -421,8 +451,9 @@ void afficher_derniers_produits(client *client) {
 }
 
 
-//fonction achat2
 
+
+//fonction achat2
 void achat_produit(produits *produits, int taille, client * a) {
     int i, quantite;
     char nom[50];
@@ -471,7 +502,11 @@ void achat_produit(produits *produits, int taille, client * a) {
             printf("Réponse non reconnue.\n");
     }
 }
- // fonction achat 1
+
+
+
+
+// fonction achat 1
 void validation_achat(client * a){
 produits produits[15];
     FILE *file = fopen("stock.txt", "r");
@@ -504,6 +539,7 @@ produits produits[15];
             printf("Réponse non reconnue.\n");
 }
 }
+
 
 
 
@@ -545,6 +581,9 @@ void mode_achat(client* client) {
     validation_achat(client );
     }
 }
+
+
+
 
 // Fonction pour afficher le menu de gestion des stocks
 void afficher_mode_gestion() {
