@@ -24,11 +24,7 @@ Limitations fonctionnelles / bugs connus :
 Dans le mode achat : 
 Le code  permet aux utilisateurs de créer des comptes clients, de se connecter, de parcourir et d'acheter des produits, ainsi que d'effectuer d'autres opérations.
 
-Voici une description des fonctions du code :
-
-1. `create_client()`: Crée un compte client en demandant à l'utilisateur son nom et en créant un fichier texte correspondant dans le répertoire "clients".
-
-2. `identification_client(client *clientinfo)`: Demande à l'utilisateur d'entrer son nom pour se connecter et récupère les informations de son compte à partir du fichier texte correspondant.
+cette partie du code est composée de plusieurs fonctions telles que "create_client()" qui créée un fichier texte correspondant dans le répertoire "clients" après avoir demande à l'utilisateur son nom. ou la fonction "identification_client(client *clientinfo)" (qui récupère des  informations du compte du client  à partir du fichier texte correspondant à son nom.)` la fonction "delete_client_account()" quant à elle supprime un compte client en supprimant le fichier texte correspondant dans le répertoire "clients".
 
 3. `remplissage_panier(char produits[], int quantite)`: Ajoute un produit et une quantité au panier en ajoutant les informations à un fichier "panier.txt".
 
@@ -40,9 +36,7 @@ Voici une description des fonctions du code :
 
 7. `rechercheProduit(const char* nomProduitRecherche, const char* nomFichier)`: Recherche un produit spécifique par son nom dans le fichier spécifié et affiche ses informations s'il est trouvé.
 
-8. `delete_client_account()`: Supprime un compte client en supprimant le fichier texte correspondant dans le répertoire "clients".
-
-9. `recherche_produit()`: Demande à l'utilisateur d'entrer le nom d'un produit et le recherche dans le fichier "stock.txt" en utilisant la fonction `rechercheProduit()`.
+la fonction recherche_produit() et rechercheProduit() sont également utilisées dans ce mode 
 
 10. `afficher_derniers_produits(client client)`: Récupère les trois derniers produits achetés à partir de l'historique d'achats du client et les affiche.
 
