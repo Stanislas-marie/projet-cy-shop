@@ -30,12 +30,33 @@ la fonction "mode_achat()": Met en œuvre le mode d'achat, où l'utilisateur peu
 "validation_achat()": s'occupe du processus d'achat en affichant les produits disponibles, en permettant à l'utilisateur de sélectionner un produit et une quantité, et en validant l'achat.
  "afficherProduitsCritiques(const char* nomFichier)"  affiche les informations sur les produits ayant des niveaux de stock bas à partir du fichier precis. 
  
-Si on regarde en détails différentes fonctionnalités son requises pour que l'achat se déroule correctement   lorsque le client réalise un achat et remplit son panier la fonction "remplissage_panier(char produits[], int quantite"  ajoute un produit et une quantité au panier en ajoutant les informations à un fichier "panier.txt". Le prix a payer s'affiche alors grâce à "calculerSommeTotal()" qui calcule le prix total des produits dans le panier. une fois son achat validé son panier se vide grâce à la fonction 
+Si on regarde en détails différentes fonctionnalités sont requises pour que l'achat se déroule correctement   lorsque le client réalise un achat et remplit son panier la fonction "remplissage_panier(char produits[], int quantite"  ajoute un produit et une quantité au panier en ajoutant les informations à un fichier "panier.txt". Le prix a payer s'affiche alors grâce à "calculerSommeTotal()" qui calcule le prix total des produits dans le panier. une fois son achat validé son panier se vide grâce à la fonction 
 la fonction recherche_produit() et rechercheProduit() sont également utilisées dans ce mode.Enfin, "afficher_derniers_produits(client client)" Récupère les trois derniers produits achetés à partir de l'historique d'achats du client et les affiche.
 
 
 Ce sont les principales fonctions du code qui donnent un apercu de la fonctionnalité finale. 
 
+Limitations fonctionnelles et bugs possibles :
+- Le programme ne vérifie pas l'identité du client qui se connecte, pour corriger ca on pourrait ajouter un code pin choisi par le client qu'il devrait utiliser pour se connecter. 
+- Le code ne gère pas la modification d'autres informations des produits, telles que le prix ou la taille. Il se concentre principalement sur la gestion des stocks.
+- Certaines fonctions comme la fonctionne de recherche de produits ne sont pas optimisés si on augmente fortments le nombre de produits.
+
+Pour prendre en main rapidement l'outils Cy_Shop voici des consignes d'utilisation :
+
+CONSIGNE D'UTILISATION :
+Pour pouvoir se servir correctements de L'outils Cy shop vous devez avoir telechargez tout les fichiers contenu dans le code principal : 
+le dossier clients , les fichiers texte clients a l'intérieur , le fichier stock.txt , le fichier texte commentaires.txt et le fichier make file.
+
+Pour ce servir de l'outils Cy shop en mode gestion vous devez rentrer un code pin qui est : "1234"
+Le programme vous demandera de saisir des ombres ou des lettres en fonctions de ce que vous foudrez faire.
+Utilisez "o" ou "O" pour répondre oui et "n" ou "N" pour réponde non.
+
+Dans le fichiers stock.txt les produits sont enregistrer sous la forme: nomduproduits références taille prix stock.
+Le fichier de chaque client est juste au nom du client sous la forme PrenomNom et contient l'historique d'achat de ce dernier.
+
+
+
+Vous pouvez vous servir du lien replit suivant pour une experience plus optimisée :
 
 
 
