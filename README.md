@@ -57,7 +57,6 @@ Le fichier de chaque client est juste au nom du client sous la forme PrenomNom e
 
 
 Vous pouvez vous servir du lien replit suivant pour une experience plus optimisée :
-https://replit.com/@StanislasMarie/cyshop-code-demonstration#stock.txt
 https://replit.com/@StanislasMarie/cyshop-code-demonstration
 
 
