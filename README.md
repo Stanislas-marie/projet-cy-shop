@@ -29,29 +29,15 @@ cette partie du code est composée de plusieurs fonctions telles que "create_cli
 la fonction "mode_achat()": Met en œuvre le mode d'achat, où l'utilisateur peut rechercher des produits, consulter le stock et effectuer des achats.
 "achat_produit(produits *produits, int taille)" Permet à l'utilisateur d'acheter un produit en sélectionnant le produit et la quantité, en mettant à jour le stock et en calculant le prix total.
 "validation_achat()": Gère le processus d'achat en affichant les produits disponibles, en permettant à l'utilisateur de sélectionner un produit et une quantité, et en validant l'achat.
+ "afficherProduitsCritiques(const char* nomFichier)" Lit et affiche les informations sur les produits ayant des niveaux de stock bas à partir du fichier spécifié.
+ 
+Si on regarde en détails différentes fonctionnalités son requises pour que l'achat se déroule correctement   lorsque le client réalise un achat et remplit son panier la fonction "remplissage_panier(char produits[], int quantite"  ajoute un produit et une quantité au panier en ajoutant les informations à un fichier "panier.txt". Le prix a payer s'affiche alors grâce à "calculerSommeTotal()" qui calcule le prix total des produits dans le panier. une fois son achat validé son panier se vide grâce à la fonction 
+la fonction recherche_produit() et rechercheProduit() sont également utilisées dans ce mode.Enfin, "afficher_derniers_produits(client client)" Récupère les trois derniers produits achetés à partir de l'historique d'achats du client et les affiche.
 
-si on regarde en détails différentes fonctionnalités son requises pour que l'achat se déroule correctement   lorsque le client réalise un achat et remplit son panier la fonction "remplissage_panier(char produits[], int quantite"  ajoute un produit et une quantité au panier en ajoutant les informations à un fichier "panier.txt". Le prix a payer s'affiche alors grâce à "calculerSommeTotal()" qui calcule le prix total des produits dans le panier. une fois son achat validé son panier se vide grâce à la fonction 
-la fonction recherche_produit() et rechercheProduit() sont également utilisées dans ce mode. 
-
-
-
-
-
-
-
-
-
-
-
-puis afficher_derniers_produits(client client)`: Récupère les trois derniers produits achetés à partir de l'historique d'achats du client et les affiche.
-
-
-
-
-
-
-
-14. `afficherProduitsCritiques(const char* nomFichier)`: Lit et affiche les informations sur les produits ayant des niveaux de stock bas à partir du fichier spécifié.
 
 Ce sont les principales fonctions du code qui donnent un apercu de la fonctionnalité finale. 
+
+
+
+
 
