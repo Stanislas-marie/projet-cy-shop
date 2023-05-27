@@ -22,3 +22,33 @@ void laisserCommentaire() {
 
     printf("Votre commentaire a été enregistré avec succès dans le fichier %s.\n", nomFichier);
 }
+
+void lireCommentaires() {
+    char nomFichier[100];
+    char commentaire[1000];
+
+    printf("Veuillez entrer le nom du fichier de commentaires : ");
+    scanf("%s", nomFichier);
+
+    FILE* fichier = fopen(nomFichier, "r");
+
+    if (fichier == NULL) {
+        printf("Erreur : impossible d'ouvrir le fichier %s.\n", nomFichier);
+        return;
+    }
+
+    printf("===== Commentaires =====\n");
+
+    while (fgets(commentaire, sizeof(commentaire), fichier) != NULL) {
+        printf("%s", commentaire);
+
+        // Ignorer les deux retours à la ligne entre les commentaires
+        if (strcmp(commentaire, "\n") == 0) {
+            fgets(commentaire, sizeof(commentaire), fichier);
+        }
+    }
+
+    printf("========================\n");
+
+    fclose(fichier);
+}
