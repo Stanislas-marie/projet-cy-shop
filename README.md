@@ -1,8 +1,10 @@
 # projet-cy-shop
-(pour code main + mode gestion) 
+
 Le code est une implémentation d'un système de gestion de magasin. Il comprend des définitions de structures pour les produits et les clients, ainsi que des fonctions pour la création de compte client, l'identification du client, le remplissage du panier, la diminution du stock, le calcul du total du panier, l'affichage des produits en stock, la recherche de produits, la suppression du compte client, l'affichage des derniers produits achetés, l'achat de produits, le mode d'achat et l'affichage des produits critiques.
 
+Le programme principal utilise une boucle while pour afficher le menu principal et attendre les choix de l'utilisateur. Selon le choix de l'utilisateur, différentes fonctions sont appelées pour effectuer les opérations correspondantes.
 
+(pour mode gestion) : 
 Le code fourni représente la partie qui gère les stocks de produits du magasin . Il permet de rechercher des produits, d'augmenter les stocks de produits et d'afficher les produits dont le stock est critique. 
 explication de chaque fonctionnalité :
 
@@ -29,11 +31,12 @@ Fonction qui permet d'augmenter le stock d'un produit par son nom. Elle ouvre le
    Cette fonction affiche le menu principal du programme, donnant accès aux différentes fonctionnalités. 
    (appelée à chaque itération de la boucle principale du programme.)
 
-Le programme principal utilise une boucle while pour afficher le menu principal et attendre les choix de l'utilisateur. Selon le choix de l'utilisateur, différentes fonctions sont appelées pour effectuer les opérations correspondantes.
-
 
 Limitations fonctionnelles / bugs connus :
 - Le code ne gère pas les cas d'erreurs liés à l'ouverture ou à la lecture du fichier "stock".
 - Certaines entrées utilisateur ne sont pas validées ou vérifiées, ce qui peut conduire à des comportements inattendus.
 - Le code ne gère pas la modification d'autres informations des produits, telles que le prix ou la taille. Il se concentre principalement sur la gestion des stocks.
+
+
+
 
