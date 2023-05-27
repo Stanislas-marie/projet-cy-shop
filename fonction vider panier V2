@@ -1,0 +1,36 @@
+ // vider le panier et mettre dans l'historique du client
+ 
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+typedef struct {
+    char historique[1000];
+} Client;
+
+void copierPanierDansHistorique(Client* client) {
+    FILE* fichierPanier = fopen("panier.txt", "r");
+    if (fichierPanier == NULL) {
+        printf("Impossible d'ouvrir le fichier panier.\n");
+        return;
+    }
+
+    FILE* fichierHistorique = fopen("historique.txt", "a");
+    if (fichierHistorique == NULL) {
+        printf("Impossible d'ouvrir le fichier historique.\n");
+        fclose(fichierPanier);
+        return;
+    }
+
+    char ligne[1000];
+    while (fgets(ligne, sizeof(ligne), fichierPanier) != NULL) {
+        fprintf(fichierHistorique, "%s", ligne);
+    }
+
+    fclose(fichierPanier);
+    fclose(fichierHistorique);
+
+    remove("panier.txt");
+
+    printf("Le contenu du panier a été copié dans l'historique du client et le panier a été vidé.\n");
+}
