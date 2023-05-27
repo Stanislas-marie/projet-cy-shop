@@ -1,0 +1,18 @@
+// Fonction qui permet d'évaluer le site
+
+#include <stdio.h>
+
+void commenterShop(int niveau) {
+    if (niveau < 1 || niveau > 5) {
+        printf("Niveau de shop invalide.\n");
+        return;
+    }
+
+    printf("Commentaire du shop : ");
+
+    for (int i = 0; i < niveau; i++) {
+        printf("⭐");
+    }
+
+    printf("\n");
+}
